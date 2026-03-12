@@ -7,6 +7,62 @@ datasource db {
   provider = "postgresql"
 }
 
+// USER entity #entity
+
 model Users {
-  id String @id @default(ulid())
+  id String @id @default(uuid())
+
+  email String @unique
+  password String
+
+  name String?
+  role EnumUserRole? 
+  secialLinks Json? @map("social_links")
+  profileId String @map("profile_id")
+
+  isVerificated Boolean @default(false) @map("is_verificated")
+  organizationName String? @map("organization_name")
+  organizatianType EnumUserType? @map("organizatian_type")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+  @@index([name, profileId])
+}
+
+enum EnumUserRole {
+  ADMIN
+  USER
+}
+
+enum EnumUserType {
+  EP
+  OOP
+}
+
+// EVENTS
+
+model Envents {
+  id String @id @default(uuid())
+
+  userId String @map("user_id")
+  title String
+  type EnumEventsType
+  days Int @default(1)
+  countPeople Int @default(1) @map("count_people")
+  price Int
+  dateEvent DateTime @map("date_event")
+  description String 
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  @@map("events")
+  @@index([title])
+}
+
+enum EnumEventsType {
+  GET
+  SEND
 }
