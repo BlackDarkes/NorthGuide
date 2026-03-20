@@ -6,8 +6,8 @@ const loginSchema = object({
 	password: string().min(6),
 });
 
-type TypeRegisterDto = zInfer<typeof loginSchema>;
+type TypeLoginDto = zInfer<typeof loginSchema>;
 
 class LoginDto extends createZodDto(loginSchema) {}
 
-export { type TypeRegisterDto, LoginDto };
+export { type TypeLoginDto, LoginDto };

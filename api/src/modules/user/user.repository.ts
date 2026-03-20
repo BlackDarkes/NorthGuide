@@ -1,16 +1,18 @@
-import { Prisma, PrismaClient } from "@/generated/prisma/client";
+
 import { Injectable } from "@nestjs/common";
+import { PrismaService } from "../prisma/prisma.service";
+import { Prisma } from "@/generated/prisma/client";
 
 @Injectable()
 export class UserRepository {
-	constructor(private readonly prismaClient: PrismaClient) {}
+	constructor(private readonly prismaService: PrismaService) {}
 
 	async getAll() {
-		return this.prismaClient.users.findMany();
+		return this.prismaService.client.users.findMany();
 	}
 
 	async getById(id: string) {
-		return this.prismaClient.users.findUnique({
+		return this.prismaService.client.users.findUnique({
 			where: {
 				id,
 			},
@@ -18,7 +20,7 @@ export class UserRepository {
 	}
 
 	async getByEmail(email: string) {
-		return this.prismaClient.users.findUnique({
+		return this.prismaService.client.users.findUnique({
 			where: {
 				email,
 			},
@@ -26,7 +28,7 @@ export class UserRepository {
 	}
 
 	async getByProfuleId(profileId: string) {
-		return this.prismaClient.users.findFirst({
+		return this.prismaService.client.users.findFirst({
 			where: {
 				profileId,
 			},
@@ -34,7 +36,7 @@ export class UserRepository {
 	}
 
 	async getAllVerificatedUser() {
-		return this.prismaClient.users.findMany({
+		return this.prismaService.client.users.findMany({
 			where: {
 				isVerificated: true,
 			},
@@ -42,13 +44,13 @@ export class UserRepository {
 	}
 
   async create(data: Prisma.UsersCreateInput) {
-    return this.prismaClient.users.create({
+    return this.prismaService.client.users.create({
       data,
     });
   }
 
   async update(id: string, data: Prisma.UsersUpdateInput) {
-    return this.prismaClient.users.update({
+    return this.prismaService.client.users.update({
       where: {
         id,
       },
@@ -57,7 +59,7 @@ export class UserRepository {
   }
 
   async remove(id: string) {
-    return this.prismaClient.users.delete({
+    return this.prismaService.client.users.delete({
       where: {
         id,
       },
