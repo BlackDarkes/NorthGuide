@@ -11,8 +11,11 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
+      "@/comman/*": ["./src/comman/*"],
+      "@/config/*": ["./src/config/*"],
       "@/generated/*": ["./src/generated/*"],
       "@/modules/*": ["./src/modules/*"],
+      "@/utils/*": ["./src/utils/*"],
     },
     "incremental": true,
     "skipLibCheck": true,
