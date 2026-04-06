@@ -5,7 +5,7 @@ export const JwtConfig = async (
   configService: ConfigService
 ): Promise<JwtModuleOptions> => {
   return {
-    secret: configService.getOrThrow<string>("JWT_SECRET"),
+    secret: configService.getOrThrow<string>("SECRET_JWT"),
     signOptions: {
       algorithm: "HS256",
     },

@@ -1,17 +1,17 @@
 
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
-import { Prisma } from "@/generated/prisma/client";
+import { Users } from "@/generated/prisma/client";
 
 @Injectable()
 export class UserRepository {
 	constructor(private readonly prismaService: PrismaService) {}
 
-	async getAll() {
+	async getAll(): Promise<Users[]> {
 		return this.prismaService.client.users.findMany();
 	}
 
-	async getById(id: string) {
+	async getById(id: string): Promise<Users | null> {
 		return this.prismaService.client.users.findUnique({
 			where: {
 				id,
@@ -19,7 +19,7 @@ export class UserRepository {
 		});
 	}
 
-	async getByEmail(email: string) {
+	async getByEmail(email: string): Promise<Users | null>  {
 		return this.prismaService.client.users.findUnique({
 			where: {
 				email,
@@ -27,7 +27,7 @@ export class UserRepository {
 		});
 	}
 
-	async getByProfuleId(profileId: string) {
+	async getByProfileId(profileId: string): Promise<Users | null>  {
 		return this.prismaService.client.users.findFirst({
 			where: {
 				profileId,
@@ -35,34 +35,11 @@ export class UserRepository {
 		});
 	}
 
-	async getAllVerificatedUser() {
+	async getAllVerificationUser(): Promise<Users[]>  {
 		return this.prismaService.client.users.findMany({
 			where: {
-				isVerificated: true,
+				isVerification: true,
 			},
 		});
 	}
-
-  async create(data: Prisma.UsersCreateInput) {
-    return this.prismaService.client.users.create({
-      data,
-    });
-  }
-
-  async update(id: string, data: Prisma.UsersUpdateInput) {
-    return this.prismaService.client.users.update({
-      where: {
-        id,
-      },
-      data,
-    });
-  }
-
-  async remove(id: string) {
-    return this.prismaService.client.users.delete({
-      where: {
-        id,
-      },
-    });
-  }
 }

@@ -1,7 +1,7 @@
 import { type infer as zInfer, object, email, string } from "zod";
 import { createZodDto } from "nestjs-zod";
 
-export const registerDto = object({
+export const registerDtoSchema = object({
 	email: email("Некорректный email"),
 	name: string("Имя пользователя не может быть пустым").min(2),
 	password: string()
@@ -12,8 +12,8 @@ export const registerDto = object({
 		}),
 });
 
-type TypeRegisterDto = zInfer<typeof registerDto>;
+ class RegisterDto extends createZodDto(registerDtoSchema) implements TypeRegisterDto {}
 
-class RegisterDto extends createZodDto(registerDto) {}
+type TypeRegisterDto = zInfer<typeof registerDtoSchema>;
 
 export { type TypeRegisterDto, RegisterDto };

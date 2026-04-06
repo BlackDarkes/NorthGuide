@@ -7,7 +7,7 @@ datasource db {
   provider = "postgresql"
 }
 
-// USER entity #entity
+// USER
 
 model Users {
   id String @id @default(uuid())
@@ -15,14 +15,14 @@ model Users {
   email String @unique
   password String
 
-  name String?
+  name String
   role EnumUserRole? 
-  secialLinks Json? @map("social_links")
+  socialLinks Json? @map("social_links")
   profileId String @map("profile_id")
 
-  isVerificated Boolean @default(false) @map("is_verificated")
+  isVerification Boolean @default(false) @map("is_verification")
   organizationName String? @map("organization_name")
-  organizatianType EnumUserType? @map("organizatian_type")
+  organizationType EnumUserType? @map("organization_type")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -43,7 +43,7 @@ enum EnumUserType {
 
 // EVENTS
 
-model Envents {
+model Events {
   id String @id @default(uuid())
 
   userId String @map("user_id")
