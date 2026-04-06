@@ -33,6 +33,7 @@ model Users {
 
 enum EnumUserRole {
   ADMIN
+  GUIDE
   USER
 }
 
