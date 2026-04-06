@@ -10,7 +10,7 @@ datasource db {
 // USER
 
 model Users {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   email String @unique
   password String
@@ -27,8 +27,29 @@ model Users {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  orders Orders[]
+  events Events[]
+
   @@map("users")
   @@index([name, profileId])
+}
+
+model Orders {
+  id String @id @default(cuid())
+
+  userId String @map("user_id")
+  eventId String @map("event_id")
+
+  startDate DateTime @map("start_date")
+  endDate DateTime @map("end_date")
+
+  price Int
+
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)  
+  event Events @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@index([userId, eventId])
+  @@map("orders")
 }
 
 enum EnumUserRole {
@@ -45,7 +66,7 @@ enum EnumUserType {
 // EVENTS
 
 model Events {
-  id String @id @default(uuid())
+  id String @id @default(cuid())
 
   userId String @map("user_id")
   title String
@@ -58,6 +79,9 @@ model Events {
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orders Orders[]
   
   @@map("events")
   @@index([title])
