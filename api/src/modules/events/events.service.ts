@@ -10,6 +10,7 @@ export class EventsService {
     private readonly eventsRepository: EventsRepository
   ) {}
 
+
   async create(data: EventCreateDto) {
     if (!data) {
       throw new BadRequestException("Неверные данные");

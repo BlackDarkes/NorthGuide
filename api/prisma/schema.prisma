@@ -44,6 +44,7 @@ model Orders {
   endDate DateTime @map("end_date")
 
   price Int
+  isCompleted Boolean @default(false) @map("is_completed")
 
   user Users @relation(fields: [userId], references: [id], onDelete: Cascade)  
   event Events @relation(fields: [eventId], references: [id], onDelete: Cascade)
