@@ -1,10 +1,9 @@
-import { Button } from "@/shared/ui";
+import { LoginForm } from "@/features/auth/login";
 
 export default function LoginPage() {
   return (
     <>
-      <h1>This login page</h1>
-      <Button variant={"outline"}>Click</Button>
+      <LoginForm />
     </>
   )
 }

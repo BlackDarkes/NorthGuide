@@ -1,0 +1,1 @@
+export type TypeUserOrganization = "EP" | "OOP";

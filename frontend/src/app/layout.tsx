@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { AppProvider } from "./providers/AppProvider";
+import "./globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -11,7 +11,6 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "North Guide",
   description: "North Guide",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
   icons: {
     icon: "/favicon.ico",
   },
@@ -23,7 +22,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  themeColor: "#ffffff",
   authors: {
     url: "-",
     name: "DaniilGordeev(BlackDarkes)",

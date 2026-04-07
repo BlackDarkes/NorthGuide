@@ -1,0 +1,1 @@
+export type TypeUserRole = "ADMIN" | "GUIDE" | "USER";

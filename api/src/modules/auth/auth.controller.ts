@@ -25,9 +25,11 @@ export class AuthController {
 		@Res({ passthrough: true }) res: Response,
 		@Body() data: LoginDto,
 	) {
+		console.log("LOGIN")
+
 		const resultUser = await this.authService.login(res, data);
 
-		const user = this.hidenPassword(resultUser);
+		const user = this.hiddenPassword(resultUser);
 
 		return {
 			message: "Пользователь успешно авторизован",
@@ -53,7 +55,7 @@ export class AuthController {
 	) {
 		const resultUser = await this.authService.refresh(req, res);
 
-		const user = this.hidenPassword(resultUser);
+		const user = this.hiddenPassword(resultUser);
 
 		return {
 			message: "Токены успешно обновлены",
@@ -61,7 +63,7 @@ export class AuthController {
 		};
 	}
 
-	private hidenPassword(user: Users) {
+	private hiddenPassword(user: Users) {
 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
 		const { password, ...result } = user;
 		return result;
