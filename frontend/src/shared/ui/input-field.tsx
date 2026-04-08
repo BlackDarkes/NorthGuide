@@ -37,9 +37,9 @@ export const InputField = ({
         className={cn(
           `absolute text-placeholder-color duration-400 transition ease-in-out cursor-text z-10 left-2.5 pointer-events-none`,
           {
-            "text-primary-color -translate-y-full scale-90":
+            "text-primary-color -translate-y-[calc(100%+0.2rem)] scale-95":
               isFocused || watch(name),
-            "translate-y-2": !(isFocused || watch(name)),
+            "translate-y-3": !(isFocused || watch(name)),
           },
         )}
       >
