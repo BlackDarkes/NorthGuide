@@ -132,3 +132,7 @@ body {
   font-family: var(--font-inter);
   background-color: var(--chart-4);
 }
+
+button {
+  cursor: pointer;
+}

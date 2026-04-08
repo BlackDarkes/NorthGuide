@@ -53,15 +53,15 @@ export const InputField = ({
         onBlur={() => setIsFocused(false)}
         autoComplete={autoComplete}
         className={cn(
-          `py-3 pl-2.5 w-full bg-transparent outline-none box-border z-0`,
-          `border duration-400 transition-all`,
+          "py-3 pl-2.5 w-full bg-transparent outline-none z-0",
+          "border duration-400 transition-all",
           isFocused || watch(name)
-            ? "border-primary-color rounded-xl"
-            : "border-transparent border-b border-b-primary-color rounded-none",
+            ? "border-primary rounded-xl"
+            : "border-transparent border-b border-b-chart-3  rounded-none",
         )}
       />
       {typeof message === "string" && (
-        <p className="text-red-500 text-sm mt-1">{message}</p>
+        <p className="text-red-500 text-sm mt-1 ml-2.5">{message}</p>
       )}
     </div>
   );
