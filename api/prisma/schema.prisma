@@ -21,6 +21,8 @@ model Users {
   profileId String @map("profile_id")
 
   isVerification Boolean @default(false) @map("is_verification")
+  statusVerification EnumUserStatusVerification @default(NOTVERIFIED) @map("status_verification")
+
   organizationName String? @map("organization_name")
   organizationType EnumUserType? @map("organization_type")
 
@@ -54,14 +56,21 @@ model Orders {
 }
 
 enum EnumUserRole {
-  ADMIN
-  GUIDE
-  USER
+  ADMIN // Админ
+  GUIDE // Гид
+  USER // Пользователь
 }
 
 enum EnumUserType {
-  EP
-  OOP
+  EP // ИП
+  OOP // ООП
+}
+
+enum EnumUserStatusVerification {
+  NOTVERIFIED // Не проверено
+  PENDING   // Ожидает
+  VERIFIED  // Подтвержден
+  REJECTED // Отклонен
 }
 
 // EVENTS
@@ -71,6 +80,8 @@ model Events {
 
   userId String @map("user_id")
   title String
+
+  statusEvent EnumEventsStatus @default(UPCOMING) @map("status_event")
   type EnumEventsType
   days Int @default(1)
   countPeople Int @default(1) @map("count_people")
@@ -89,6 +100,13 @@ model Events {
 }
 
 enum EnumEventsType {
-  GET
-  SEND
+  GET // Отдать
+  SEND // Получить
+}
+
+enum EnumEventsStatus {
+  UPCOMING  // В ожидании (еще не начался)
+  ONGOING   // Идет сейчас
+  COMPLETED // Завершен
+  CANCELLED // Отменен
 }

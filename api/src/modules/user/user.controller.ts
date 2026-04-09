@@ -1,7 +1,31 @@
-import { Controller } from '@nestjs/common';
-import { UserService } from './user.service';
+import { BadRequestException, Controller, Get, HttpCode } from "@nestjs/common";
+import { UserService } from "./user.service";
+import { UserRepository } from "./user.repository";
+import { CurrentUser } from "../../common/decorators/current-user.decorator";
+import { hiddenPassword } from "@/utils/hidden-password.utils";
+import { Auth } from "../auth/common/decorators/auth.decorator";
 
-@Controller('user')
+@Controller("user")
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+	constructor(
+		private readonly userService: UserService,
+		private readonly userRepository: UserRepository,
+	) {}
+
+  @Auth()
+	@Get("me")
+	@HttpCode(200)
+	async getMe(@CurrentUser("id") userId: string) {
+		const userResult = await this.userRepository.getById(userId);
+
+		if (!userResult) {
+			throw new BadRequestException("Пользователь не найден");
+		}
+
+		const user = hiddenPassword(userResult);
+
+		return {
+			...user,
+		};
+	}
 }

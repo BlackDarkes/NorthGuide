@@ -10,7 +10,7 @@ import {
 import { OrdersService } from "./orders.service";
 import { OrdersRepository } from "./orders.repository";
 import { Auth } from "../auth/common/decorators/auth.decorator";
-import { CurrentUser } from "../../comman/decorators/current-user.decorator";
+import { CurrentUser } from "../../common/decorators/current-user.decorator";
 import { OrderCreateDto } from "./common/dto/order-create.dto";
 
 @Controller("orders")

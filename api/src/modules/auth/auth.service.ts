@@ -83,7 +83,7 @@ export class AuthService {
 
 	async refresh(req: Request, res: Response) {
 		const refreshToken = req.cookies?.["refresh_token"];
-
+		
 		if (!refreshToken) {
 			throw new UnauthorizedException("Пользователь не авторизован");
 		}

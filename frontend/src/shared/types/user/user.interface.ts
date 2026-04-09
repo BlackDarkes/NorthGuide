@@ -1,5 +1,6 @@
 import { TypeUserOrganization } from "./user-organization.type";
 import { TypeUserRole } from "./user-role.type";
+import { TypeUserStatusVerification } from "./user-status-verification.type";
 
 export interface IUser {
   id: string;
@@ -9,6 +10,7 @@ export interface IUser {
   socialLinks: string[];
   profileId: string;
   isVerification: boolean;
+  statusVerification: TypeUserStatusVerification;
   organizationName: string;
   organizationType: TypeUserOrganization;
   createdAt: Date;

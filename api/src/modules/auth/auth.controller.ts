@@ -3,7 +3,7 @@ import { AuthService } from "./auth.service";
 import { RegisterDto } from "./common/dto/register.dto";
 import { LoginDto } from "./common/dto/login.dto";
 import { Request, Response } from "express";
-import { Users } from "@/generated/prisma/client";
+import { hiddenPassword } from "@/utils/hidden-password.utils";
 
 @Controller("auth")
 export class AuthController {
@@ -27,7 +27,7 @@ export class AuthController {
 	) {
 		const resultUser = await this.authService.login(res, data);
 
-		const user = this.hiddenPassword(resultUser);
+		const user = hiddenPassword(resultUser);
 
 		return {
 			message: "Пользователь успешно авторизован",
@@ -53,17 +53,11 @@ export class AuthController {
 	) {
 		const resultUser = await this.authService.refresh(req, res);
 
-		const user = this.hiddenPassword(resultUser);
+		const user = hiddenPassword(resultUser);
 
 		return {
 			message: "Токены успешно обновлены",
 			user,
 		};
-	}
-
-	private hiddenPassword(user: Users) {
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const { password, ...result } = user;
-		return result;
 	}
 }

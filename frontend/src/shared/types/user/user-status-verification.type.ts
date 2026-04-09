@@ -1,0 +1,1 @@
+export type TypeUserStatusVerification = "NOTVERIFIED" | "PENDING" | "VERIFIED" | "REJECTED";
