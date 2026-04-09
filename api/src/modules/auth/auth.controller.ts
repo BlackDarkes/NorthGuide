@@ -25,8 +25,6 @@ export class AuthController {
 		@Res({ passthrough: true }) res: Response,
 		@Body() data: LoginDto,
 	) {
-		console.log("LOGIN")
-
 		const resultUser = await this.authService.login(res, data);
 
 		const user = this.hiddenPassword(resultUser);
