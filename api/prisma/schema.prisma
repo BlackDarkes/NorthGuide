@@ -23,6 +23,7 @@ model Users {
   isVerification Boolean @default(false) @map("is_verification")
   statusVerification EnumUserStatusVerification @default(NOTVERIFIED) @map("status_verification")
 
+  isOrganization Boolean @default(false) @map("is_organization")
   organizationName String? @map("organization_name")
   organizationType EnumUserType? @map("organization_type")
 

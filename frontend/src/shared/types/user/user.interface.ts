@@ -11,6 +11,7 @@ export interface IUser {
   profileId: string;
   isVerification: boolean;
   statusVerification: TypeUserStatusVerification;
+  isOrganization: boolean;
   organizationName: string;
   organizationType: TypeUserOrganization;
   createdAt: Date;
