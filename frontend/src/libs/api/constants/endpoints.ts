@@ -8,4 +8,10 @@ export const ENDPOINTS = {
   user: {
     me: "/user/me",
   },
+  events: {
+    getAll: "/events",
+  },
+  orders: {
+
+  }
 };

@@ -1,0 +1,1 @@
+export type TypeEventStatus = "UPCOMING" | "ONGOING" | "COMPLETED" | "CANCELLED";

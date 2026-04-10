@@ -18,4 +18,10 @@ export const apiClient = {
   user: {
     me: () => baseClient.get(ENDPOINTS.user.me),
   },
+  events: {
+    getEvents: () => baseClient.get(ENDPOINTS.events.getAll),
+  },
+  orders: {
+    
+  }
 };

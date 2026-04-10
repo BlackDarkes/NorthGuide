@@ -1,0 +1,1 @@
+export type TypeEventType = "GET" | "SEND";

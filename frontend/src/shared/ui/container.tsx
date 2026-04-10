@@ -9,7 +9,7 @@ interface IContainerProps {
 export const Container = ({ children, className }: IContainerProps) => {
   return (
     <div className={cn(
-      "mx-auto w-[min(100%-20px,1440px)]",
+      "mx-auto w-[min(100%-20px,1280px)]",
       className,
     )}>
       {children}
