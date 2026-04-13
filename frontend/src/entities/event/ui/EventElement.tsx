@@ -1,3 +1,4 @@
+import { useDate } from "@/shared/hooks/use-date";
 import { cn } from "@/shared/lib/utils";
 import { IEvent } from "@/shared/types";
 import { memo } from "react";
@@ -7,19 +8,22 @@ interface IEventElementProps {
 }
   
 export const EventElement = memo(({ event }: IEventElementProps) => {
+  const { day, month, dayOfWeek, time } = useDate(event?.dateEvent);
+
   return (
     <li className={cn(
       "flex p-5 bg-foreground text-background w-fit rounded-2xl"
     )}>
       <div>
-        <h3>{event?.title}</h3>
-        <p>{event?.days}</p>
-        <p>{event?.price}</p>
+        <h3>Возьму: {event?.countPeople} человек</h3>
+        <p>{event?.title}</p>
+        <p>{time}</p>
       </div>
 
       <div>
-        <p>{event?.countPeople}</p>
-        <p>{event?.statusEvent}</p>
+        <p>{month}</p>
+        <p>{day}</p>
+        <p>{dayOfWeek}</p>
       </div>
     </li>
   );
