@@ -11,6 +11,7 @@ export const formatDate = (date: Date): string => {
   if (msgDate.getTime() === yesterday.getTime()) return "Вчера";
 
   return new Intl.DateTimeFormat("ru-RU", {
+    timeZone: "UTC",
     day: "numeric",
     month: "long",
   }).format(msgDate);

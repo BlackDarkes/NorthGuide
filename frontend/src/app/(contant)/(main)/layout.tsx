@@ -1,7 +1,14 @@
+import { Header } from "@/widgets/header";
+
 export default function ContentLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
 }

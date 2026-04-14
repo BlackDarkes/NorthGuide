@@ -13,7 +13,7 @@ export const NAVIGATE_ITEMS: INavigateItems[] = [
   {
     id: "2",
     title: "Профиль",
-    path: "/",
+    path: "/profile",
   },
   {
     id: "3",

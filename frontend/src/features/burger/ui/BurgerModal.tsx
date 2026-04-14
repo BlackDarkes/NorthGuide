@@ -24,7 +24,7 @@ export const BurgerModal = () => {
           "absolute top-0 right-0 flex justify-between p-[40px_10px] w-[min(100%,380px)] h-full bg-card cursor-default"
         )}
       >
-        <BurgerNavigateList items={NAVIGATE_ITEMS} />
+        <BurgerNavigateList items={NAVIGATE_ITEMS} handleClose={handleOpen} />
         
         <BurgerButton />
       </section>

@@ -21,7 +21,8 @@ export const EventsList = () => {
   const groupedEvents = useMemo(() => {
     return sortedEvents.reduce(
       (acc, event) => {
-        const dateKey = formatDate(event.dateEvent);
+        const dateKey = event.dateEvent.toString().split("T")[0];
+
         if (!acc[dateKey]) {
           acc[dateKey] = [];
         }
@@ -32,23 +33,37 @@ export const EventsList = () => {
     );
   }, [sortedEvents]);
 
-  return (
-    <section className={cn("mt-10")}>
+  if (events?.length === 0) {
+    return (
       <Container>
-        {Object.entries(groupedEvents).map(([date, dateEvents]) => (
-          <div key={date} className="mb-8 last:mb-0">
-            <h2 className="text-xl font-bold mb-4">{date}</h2>
-            <ul className={cn(
-              "grid grid-cols-1 justify-items-start gap-10",
-              "w-full",
-              "md:grid-cols-2 lg:grid-cols-3",
-            )}>
+        <p className={cn(
+          "mt-10 text-center"
+        )}>События не найдены...</p>
+      </Container>
+    );
+  }
+
+  return (
+    <section className={cn("my-[clamp(20px,4vw,40px)]")}>
+      <Container>
+        {Object.entries(groupedEvents).map(([date, dateEvents]) => {
+          const displayDate = formatDate(dateEvents[0].dateEvent);
+
+          return (<div key={date} className="mb-8 last:mb-0">
+            <h2 className="text-xl font-bold mb-4">{displayDate}</h2>
+            <ul
+              className={cn(
+                "grid grid-cols-1 justify-items-start gap-10",
+                "w-full",
+                "md:grid-cols-2 lg:grid-cols-3",
+              )}
+            >
               {dateEvents.map((event) => (
                 <EventElement key={event.id} event={event} />
               ))}
             </ul>
-          </div>
-        ))}
+          </div>)
+        })}
       </Container>
     </section>
   );
