@@ -38,7 +38,11 @@ export const EventsList = () => {
         {Object.entries(groupedEvents).map(([date, dateEvents]) => (
           <div key={date} className="mb-8 last:mb-0">
             <h2 className="text-xl font-bold mb-4">{date}</h2>
-            <ul className="space-y-4">
+            <ul className={cn(
+              "grid grid-cols-1 justify-items-start gap-10",
+              "w-full",
+              "md:grid-cols-2 lg:grid-cols-3",
+            )}>
               {dateEvents.map((event) => (
                 <EventElement key={event.id} event={event} />
               ))}

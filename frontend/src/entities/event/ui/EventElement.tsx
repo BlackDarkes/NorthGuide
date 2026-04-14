@@ -12,10 +12,15 @@ export const EventElement = memo(({ event }: IEventElementProps) => {
 
   return (
     <li className={cn(
-      "flex p-5 bg-foreground text-background w-fit rounded-2xl"
+      "flex p-5 w-full bg-foreground text-background rounded-[10px]",
+      "md:w-[min(100%,400px)]"
     )}>
       <div>
-        <h3>Возьму: {event?.countPeople} человек</h3>
+        { event?.type === "SEND" ? (
+          <h3>Возьму: {event?.countPeople} человек</h3>
+        ): (
+          <h3>Отдам: {event?.countPeople} человек</h3>
+        ) }
         <p>{event?.title}</p>
         <p>{time}</p>
       </div>

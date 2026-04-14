@@ -3,6 +3,7 @@
 import { ReactNode } from "react";
 import { QueryProvider } from "./QueryProvider";
 import { AuthProvider } from "./AuthProvider";
+import { ModalProvider } from "./ModalProvider";
 
 interface IAppProviderProps {
   children: ReactNode;
@@ -11,7 +12,11 @@ interface IAppProviderProps {
 export const AppProvider = ({ children }: IAppProviderProps) => {
   return (
     <QueryProvider>
-      <AuthProvider>{children}</AuthProvider>
+      <AuthProvider>
+        <ModalProvider>
+          {children}
+        </ModalProvider>
+      </AuthProvider>
     </QueryProvider>
   );
 };

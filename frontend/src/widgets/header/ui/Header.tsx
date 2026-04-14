@@ -1,6 +1,7 @@
 "use client";
 
 import { useUserStore } from "@/features/auth/model/user-store";
+import { BurgerButton } from "@/features/burger";
 import { Container } from "@/shared/ui";
 import { Check, X } from "lucide-react";
 import { ReactNode } from "react";
@@ -71,8 +72,10 @@ export const Header = () => {
 
   return (
     <header className="w-full bg-background border-b">
-      <Container className="flex items-center gap-x-10 py-4">
+      <Container className="flex items-center justify-between gap-x-10 py-4">
         {getVerificationBlock()}
+
+        <BurgerButton className="opacity-0 pointer-events-none" />
       </Container>
     </header>
   );

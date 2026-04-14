@@ -4,3 +4,4 @@ export { InputField } from "./input-field";
 export { Toaster } from "./sonner";
 export { Container } from "./container";
 export { Badge, badgeVariants } from "./badge";
+export { TextUnderline } from "./text-underline";
