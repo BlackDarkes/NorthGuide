@@ -2,7 +2,7 @@ import { useDate } from "@/shared/hooks/use-date";
 import { cn } from "@/shared/lib/utils";
 import { IEvent } from "@/shared/types";
 import { memo } from "react";
-import { CalendarDays, Clock, Users } from "lucide-react";
+import { CalendarDays, Clock, Users, BadgeRussianRuble } from "lucide-react";
 import Link from "next/link";
 
 interface IEventElementProps {
@@ -27,7 +27,7 @@ export const EventElement = memo(({ event }: IEventElementProps) => {
           "md:w-[min(100%,400px)]",
         )}
       >
-        <div className="flex flex-col gap-2.5 min-w-0">
+        <div className="flex flex-col  gap-2.5 min-w-0">
           <div className="flex items-center flex-wrap gap-2">
             <span
               className={cn(
@@ -52,10 +52,17 @@ export const EventElement = memo(({ event }: IEventElementProps) => {
             {event.title}
           </h3>
 
-          <p className="text-sm text-muted-foreground flex items-center gap-1.5">
-            <Clock className="size-3.5" />
-            {time}
-          </p>
+          <div className="text-sm text-muted-foreground flex items-center gap-5">
+            <p className="flex items-center gap-1.5">
+              <Clock className="size-3.5" />
+              {time}
+            </p>
+
+            <p className="flex items-center gap-1.5">
+              <BadgeRussianRuble className="size-3.5" />
+              {event.price} ₽
+            </p>
+          </div>
         </div>
 
         <div className="flex flex-col items-center justify-center gap-1 shrink-0 text-center pt-1 sm:pt-0">

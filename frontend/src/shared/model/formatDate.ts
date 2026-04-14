@@ -8,10 +8,9 @@ export const formatDate = (date: Date): string => {
   const msgDate = new Date(dateEvent.getFullYear(), dateEvent.getMonth(), dateEvent.getDate());
 
   if (msgDate.getTime() === today.getTime()) return "Сегодня";
-  if (msgDate.getTime() === yesterday.getTime()) return "Вчера";
+  if (msgDate.getTime() === dateEvent.getTime()) return "Вчера";
 
   return new Intl.DateTimeFormat("ru-RU", {
-    timeZone: "UTC",
     day: "numeric",
     month: "long",
   }).format(msgDate);

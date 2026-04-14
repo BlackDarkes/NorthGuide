@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TypeLoginSchema, TypeRegisterSchema, userClient } from "@/entities/user";
 import { IUser } from "@/shared/types";
+import { toast } from "sonner";
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 
@@ -57,7 +58,8 @@ export const useUserStore = create<IUserStore>()(
         try {
           await userClient.logout();
         } finally {
-          set({  user: undefined, isAuth: false });
+          toast.success("Вы успешно вышли из аккаунта");
+          set({ user: undefined, isAuth: false });
         }
       },
 

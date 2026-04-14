@@ -22,6 +22,11 @@ export const EventsList = () => {
     return sortedEvents.reduce(
       (acc, event) => {
         const dateKey = event.dateEvent.toString().split("T")[0];
+        const now = new Date();
+
+        if (new Date(dateKey).getTime() < now.getTime()) {
+          return acc;
+        }
 
         if (!acc[dateKey]) {
           acc[dateKey] = [];
