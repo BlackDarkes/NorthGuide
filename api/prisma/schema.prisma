@@ -16,6 +16,7 @@ model Users {
   password String
 
   name String
+  phone String?
   role EnumUserRole? 
   socialLinks Json? @map("social_links")
   profileId String @map("profile_id")
@@ -32,6 +33,7 @@ model Users {
 
   orders Orders[]
   events Events[]
+  favorites Favorites[]
 
   @@map("users")
   @@index([name, profileId])
@@ -54,6 +56,20 @@ model Orders {
 
   @@index([userId, eventId])
   @@map("orders")
+}
+
+model Favorites {
+  id String @id @default(cuid())
+
+  userId String @map("user_id") 
+  eventId String @map("event_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
+  event Events @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  @@map("favorites")
 }
 
 enum EnumUserRole {
@@ -95,6 +111,7 @@ model Events {
 
   user Users @relation(fields: [userId], references: [id], onDelete: Cascade)
   orders Orders[]
+  favorites Favorites[]
   
   @@map("events")
   @@index([title])

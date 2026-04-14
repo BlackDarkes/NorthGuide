@@ -6,6 +6,7 @@ export interface IUser {
   id: string;
   email: string;
   name: string;
+  phone?: string;
   role: TypeUserRole;
   socialLinks: string[];
   profileId: string;

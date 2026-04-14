@@ -3,13 +3,7 @@
 import { formatDate } from "@/shared/model/formatDate";
 import { IEvent } from "@/shared/types";
 import { cn } from "@/shared/lib/utils";
-import {
-  CalendarDays,
-  Users,
-  Banknote,
-  Clock,
-  FileText,
-} from "lucide-react";
+import { CalendarDays, Users, Banknote, Clock, FileText, Heart } from "lucide-react";
 import { Button } from "@/shared/ui";
 import { getDaysWord } from "@/shared/model/getDaysWord";
 import { MetricCard } from "./EventMetricCard";
@@ -32,26 +26,32 @@ export const EventShowedElement = ({ event }: IEventShowedElementProps) => {
 
   return (
     <div className="space-y-8">
-      <div className="space-y-4">
-        <div className="flex flex-wrap items-center gap-3">
-          <span
-            className={cn(
-              "inline-flex items-center rounded-full px-3 py-1 text-sm font-medium",
-              isGet
-                ? "bg-secondary text-secondary-foreground"
-                : "bg-primary/10 text-primary",
-            )}
-          >
-            {isGet ? "Отдам" : "Возьму"}
-          </span>
-          <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
-            <CalendarDays className="size-4" />
-            {formattedDate}
-          </span>
+      <div className="flex justify-between items-start">
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center gap-3">
+            <span
+              className={cn(
+                "inline-flex items-center rounded-full px-3 py-1 text-sm font-medium",
+                isGet
+                  ? "bg-secondary text-secondary-foreground"
+                  : "bg-primary/10 text-primary",
+              )}
+            >
+              {isGet ? "Отдам" : "Возьму"}
+            </span>
+            <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+              <CalendarDays className="size-4" />
+              {formattedDate}
+            </span>
+          </div>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground wrap-break-word">
+            {event.title}
+          </h1>
         </div>
-        <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground wrap-break-word">
-          {event.title}
-        </h1>
+
+        <button type="button">
+          <Heart className="size-7" />
+        </button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -90,7 +90,9 @@ export const EventShowedElement = ({ event }: IEventShowedElementProps) => {
         >
           Купить за {event.price} ₽
         </Button>
-        <Button variant="outline" size="lg" className="w-full sm:w-auto py-5">Поделиться</Button>
+        <Button variant="outline" size="lg" className="w-full sm:w-auto py-5">
+          Поделиться
+        </Button>
       </div>
     </div>
   );
