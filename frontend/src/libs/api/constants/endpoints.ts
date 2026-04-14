@@ -10,6 +10,7 @@ export const ENDPOINTS = {
   },
   events: {
     getAll: "/events",
+    getById: "/events/:id",
   },
   orders: {
 

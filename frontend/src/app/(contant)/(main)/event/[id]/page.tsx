@@ -1,9 +1,16 @@
-export default async function EventPage({ 
-  params 
-}: { 
-  params: Promise<{ id: string }> 
-}) {
-  const { id } = await params;
+"use client";
 
-  return <div>EventPage: {id}</div>;
+import { useGetEventById } from "@/entities/event";
+import { EventShowed } from "@/widgets/event-showed";
+import { useParams } from "next/navigation";
+
+export default function EventPage() {
+  const { id } = useParams();
+  const { data: event } = useGetEventById(id as string);
+
+  return (
+    <>
+      <EventShowed event={event} />
+    </>
+  );
 }

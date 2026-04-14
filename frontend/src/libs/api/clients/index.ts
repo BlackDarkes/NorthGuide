@@ -20,6 +20,7 @@ export const apiClient = {
   },
   events: {
     getEvents: () => baseClient.get(ENDPOINTS.events.getAll),
+    getEventById: (id: string) => baseClient.get(ENDPOINTS.events.getById.replace(":id", id)),
   },
   orders: {
     

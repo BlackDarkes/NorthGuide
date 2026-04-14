@@ -13,7 +13,6 @@ import {
   User,
 } from "lucide-react";
 
-// Безопасное извлечение домена для отображения ссылок
 const getDomainFromUrl = (url: string) => {
   try {
     return new URL(url).hostname.replace("www.", "");
@@ -25,13 +24,12 @@ const getDomainFromUrl = (url: string) => {
 export const Profile = () => {
   const { user } = useUserStore();
 
-  if (!user) return null; // Или добавьте Skeleton/Loader
+  if (!user) return null; //  Skeleton/Loader
 
   return (
     <section className="py-8 md:py-12">
       <Container>
         <div className="max-w-3xl mx-auto space-y-6">
-          {/* Header */}
           <div className="flex items-center gap-4">
             <div className="size-14 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
               <User className="size-6" />
@@ -44,9 +42,7 @@ export const Profile = () => {
             </div>
           </div>
 
-          {/* Main Card */}
           <div className="bg-card border border-border/50 rounded-xl p-6 shadow-sm space-y-6">
-            {/* Contact Info */}
             <div className="grid gap-6 md:grid-cols-2">
               <InfoField icon={<Phone className="size-4" />} label="Телефон">
                 {user.phone || (
@@ -66,7 +62,6 @@ export const Profile = () => {
 
             <div className="h-px bg-border/50" />
 
-            {/* Social Links */}
             <InfoField
               icon={<LinkIcon className="size-4" />}
               label="Социальные ссылки"
@@ -95,14 +90,12 @@ export const Profile = () => {
 
             <div className="h-px bg-border/50" />
 
-            {/* Profile ID */}
             <InfoField icon={<Hash className="size-4" />} label="ID профиля">
               <code className="bg-muted px-2 py-0.5 rounded text-sm font-mono text-foreground">
                 {user.profileId || "—"}
               </code>
             </InfoField>
 
-            {/* Guide Specific */}
             {user.role === "GUIDE" && (
               <>
                 <div className="h-px bg-border/50" />
@@ -112,14 +105,14 @@ export const Profile = () => {
                     Данные гида
                   </div>
                   <div className="grid gap-4 md:grid-cols-2">
-                    <InfoField label="Организация" className="!pl-0">
+                    <InfoField label="Организация" className="pl-0!">
                       {user.organizationName || (
                         <span className="text-muted-foreground/70 italic">
                           Не указана
                         </span>
                       )}
                     </InfoField>
-                    <InfoField label="Тип организации" className="!pl-0">
+                    <InfoField label="Тип организации" className="pl-0!">
                       {user.organizationType || (
                         <span className="text-muted-foreground/70 italic">
                           Не указан
@@ -137,7 +130,6 @@ export const Profile = () => {
   );
 };
 
-// Вспомогательный компонент для единообразия
 function InfoField({
   icon,
   label,
@@ -157,7 +149,7 @@ function InfoField({
           {label}
         </span>
       </div>
-      <div className="text-sm font-medium text-foreground break-words">
+      <div className="text-sm font-medium text-foreground wrap-break-word">
         {children}
       </div>
     </div>

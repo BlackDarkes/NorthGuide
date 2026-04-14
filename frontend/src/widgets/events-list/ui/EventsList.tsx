@@ -1,13 +1,13 @@
 "use client";
 
-import { EventElement, useGetEvents } from "@/entities/event";
+import { EventElement, useGetAllEvents } from "@/entities/event";
 import { cn } from "@/shared/lib/utils";
 import { formatDate } from "@/shared/model/formatDate";
 import { Container } from "@/shared/ui";
 import { useMemo } from "react";
 
 export const EventsList = () => {
-  const { data: events } = useGetEvents();
+  const { data: events } = useGetAllEvents();
 
   const sortedEvents = useMemo(() => {
     return events

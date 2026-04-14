@@ -1,0 +1,1 @@
+export { EventShowed } from "./ui/EventShowed";

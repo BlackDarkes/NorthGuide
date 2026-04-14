@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { eventClient } from "./event-client";
 import { IEvent } from "@/shared/types";
 
-export const useGetEvents = () => {
+export const useGetAllEvents = () => {
   return useQuery<IEvent[]>({
     queryKey: ["events"],
     queryFn: async () => {
@@ -10,3 +10,12 @@ export const useGetEvents = () => {
     },
   });
 };
+
+export const useGetEventById = (id: string) => {
+  return useQuery<IEvent>({
+    queryKey: ["event", id],
+    queryFn: async () => {
+      return eventClient.getEventById(id);
+    },
+  })
+}

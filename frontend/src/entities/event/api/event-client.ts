@@ -3,5 +3,8 @@ import { extractData } from "@/shared/utils/extract-data";
 
 export const eventClient = {
   getEvents: async () => 
-    extractData(apiClient.events.getEvents())
+    extractData(apiClient.events.getEvents()),
+
+  getEventById: async (id: string) => 
+    extractData(apiClient.events.getEventById(id)),
 }
