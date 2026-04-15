@@ -1,3 +1,4 @@
+import { IFavorite } from "../favorite/favorite.interface";
 import { TypeEventStatus } from "./event-status.type";
 import { TypeEventType } from "./event-type.type";
 
@@ -14,4 +15,5 @@ export interface IEvent {
   description: string;
   createdAt: Date;
   updatedAt: Date;
+  favorites: IFavorite[];
 }

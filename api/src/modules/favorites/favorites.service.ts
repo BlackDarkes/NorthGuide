@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { FavoritesRepository } from "./favorites.repository";
-import { FavoriteCreateDto } from "./common/dto/favorite-create.dto";
+import { TypeFavoriteCreateDto } from "./common/dto/favorite-create.dto";
 import { UserRepository } from "../user/user.repository";
 import { EventsRepository } from "../events/events.repository";
 
@@ -28,7 +28,7 @@ export class FavoritesService {
 		return this.favoritesRepository.getByEventId(eventId);
 	}
 
-	async create(data: FavoriteCreateDto) {
+	async create(data: TypeFavoriteCreateDto) {
 		const { userId, eventId } = data;
 
     await this.getExistingUserAndEvent(userId, eventId);

@@ -9,7 +9,11 @@ export class EventsRepository {
   ) {}
 
   async getAll(): Promise<Events[]> {
-    return this.prismaService.client.events.findMany();
+    return this.prismaService.client.events.findMany({
+      include: {
+        favorites: true,
+      }
+    });
   }
 
   async getById(id: string): Promise<Events | null> {
@@ -17,6 +21,9 @@ export class EventsRepository {
       where: {
         id,
       },
+      include: {
+        favorites: true,
+      }
     });
   }
 
@@ -24,6 +31,9 @@ export class EventsRepository {
     return this.prismaService.client.events.findMany({
       where: {
         userId,
+      },
+      include: {
+        favorites: true,
       }
     })
   }
@@ -33,6 +43,9 @@ export class EventsRepository {
       where: {
         title,
       },
+      include: {
+        favorites: true,
+      }
     });
   }
 }

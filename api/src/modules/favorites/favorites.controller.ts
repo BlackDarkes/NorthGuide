@@ -1,7 +1,15 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post } from "@nestjs/common";
+import {
+	Body,
+	Controller,
+	Delete,
+	Get,
+	HttpCode,
+	Param,
+	Post,
+} from "@nestjs/common";
 import { FavoritesService } from "./favorites.service";
 import { CurrentUser } from "@/common/decorators/current-user.decorator";
-import { FavoriteCreateDto } from "./common/dto/favorite-create.dto";
+import { Auth } from "../auth/common/decorators/auth.decorator";
 
 @Controller("favorites")
 export class FavoritesController {
@@ -37,15 +45,19 @@ export class FavoritesController {
 		return this.favoritesService.getByEventId(eventId);
 	}
 
+	@Auth()
 	@Post("")
 	@HttpCode(201)
-	async create(@Body() data: FavoriteCreateDto) {
-		return this.favoritesService.create(data);
+	async create(
+		@CurrentUser("id") userId: string, 
+		@Body("eventId") eventId: string
+	) {
+		return this.favoritesService.create({ userId, eventId });
 	}
 
-  @Delete(":id")
-  @HttpCode(200)
-  async remove(@Param("id") id: string) {
-    return this.favoritesService.remove(id);
-  }
+	@Delete(":id")
+	@HttpCode(200)
+	async remove(@Param("id") id: string) {
+		return this.favoritesService.remove(id);
+	}
 }

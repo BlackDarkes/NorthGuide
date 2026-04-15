@@ -3,16 +3,18 @@
 import { formatDate } from "@/shared/model/formatDate";
 import { IEvent } from "@/shared/types";
 import { cn } from "@/shared/lib/utils";
-import { CalendarDays, Users, Banknote, Clock, FileText, Heart } from "lucide-react";
+import { CalendarDays, Users, Banknote, Clock, FileText } from "lucide-react";
 import { Button } from "@/shared/ui";
 import { getDaysWord } from "@/shared/model/getDaysWord";
 import { MetricCard } from "./EventMetricCard";
+import { ReactNode } from "react";
 
 interface IEventShowedElementProps {
   event: IEvent | undefined;
+  children: ReactNode;
 }
 
-export const EventShowedElement = ({ event }: IEventShowedElementProps) => {
+export const EventShowedElement = ({ event, children }: IEventShowedElementProps) => {
   if (!event) {
     return (
       <div className="animate-pulse space-y-4 text-muted-foreground">
@@ -49,9 +51,7 @@ export const EventShowedElement = ({ event }: IEventShowedElementProps) => {
           </h1>
         </div>
 
-        <button type="button">
-          <Heart className="size-7" />
-        </button>
+        { children }
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
