@@ -5,3 +5,5 @@ export { Toaster } from "./sonner";
 export { Container } from "./container";
 export { Badge, badgeVariants } from "./badge";
 export { TextUnderline } from "./text-underline";
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./accordion";
+export { Skeleton } from "./skeleton";

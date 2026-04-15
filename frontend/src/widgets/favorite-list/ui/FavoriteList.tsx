@@ -45,10 +45,10 @@ export const FavoriteList = () => {
     <section className="py-8 md:py-12">
       <Container>
         <div className="mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight flex items-center gap-3">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight flex items-center gap-3">
             <Heart className="size-7 text-primary" />
             Избранное
-          </h1>
+          </h2>
           <p className="text-sm text-muted-foreground mt-1">
             {favorites.length} {getEventsWord(favorites.length)}
           </p>

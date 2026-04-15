@@ -27,6 +27,12 @@ export const NAVIGATE_ITEMS: INavigateItems[] = [
   },
   {
     id: "4",
+    title: "Полезная информация",
+    path: "/help",
+    isButton: false,
+  },
+  {
+    id: "5",
     title: "Выйти",
     path: "/login",
     isLogout: true,

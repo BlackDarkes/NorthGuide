@@ -35,7 +35,7 @@ export const Profile = () => {
               <User className="size-6" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold tracking-tight">Мой профиль</h1>
+              <h2 className="text-2xl font-bold tracking-tight">Мой профиль</h2>
               <p className="text-sm text-muted-foreground">
                 Личные данные и настройки аккаунта
               </p>

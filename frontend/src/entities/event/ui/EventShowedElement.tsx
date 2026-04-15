@@ -73,9 +73,9 @@ export const EventShowedElement = ({
               {formattedDate}
             </span>
           </div>
-          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground wrap-break-word">
+          <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground wrap-break-word">
             {event.title}
-          </h1>
+          </h2>
         </div>
 
         {children}
