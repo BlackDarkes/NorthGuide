@@ -11,6 +11,7 @@ export const useFavoriteAdd = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["events"] });
       queryClient.invalidateQueries({ queryKey: ["event"] });
+      queryClient.invalidateQueries({ queryKey: ["favorites"] });
     },
   });
 };

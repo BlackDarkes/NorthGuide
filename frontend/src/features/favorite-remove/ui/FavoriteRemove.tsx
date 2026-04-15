@@ -16,7 +16,7 @@ export const FavoriteRemove = ({ favoriteId }: IFavoriteRemoveProps) => {
 
   return (
     <button type="button" onClick={handleRemoveFavorite}>
-      <Heart className="size-7 text-red-700 " />
+      <Heart className="size-7 text-red-700 fill-current" />
     </button>
   );
 }

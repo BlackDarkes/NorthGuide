@@ -11,6 +11,7 @@ export const useFavoriteRemove = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["events"] });
       queryClient.invalidateQueries({ queryKey: ["event"] });
+      queryClient.invalidateQueries({ queryKey: ["favorites"] });
     },
   })
 }

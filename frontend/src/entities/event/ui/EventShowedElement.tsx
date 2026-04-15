@@ -3,18 +3,31 @@
 import { formatDate } from "@/shared/model/formatDate";
 import { IEvent } from "@/shared/types";
 import { cn } from "@/shared/lib/utils";
-import { CalendarDays, Users, Banknote, Clock, FileText } from "lucide-react";
+import {
+  CalendarDays,
+  Users,
+  Banknote,
+  Clock,
+  FileText,
+  ArrowLeft,
+} from "lucide-react";
 import { Button } from "@/shared/ui";
 import { getDaysWord } from "@/shared/model/getDaysWord";
 import { MetricCard } from "./EventMetricCard";
 import { ReactNode } from "react";
+import { useRouter } from "next/navigation";
 
 interface IEventShowedElementProps {
   event: IEvent | undefined;
   children: ReactNode;
 }
 
-export const EventShowedElement = ({ event, children }: IEventShowedElementProps) => {
+export const EventShowedElement = ({
+  event,
+  children,
+}: IEventShowedElementProps) => {
+  const { back } = useRouter();
+
   if (!event) {
     return (
       <div className="animate-pulse space-y-4 text-muted-foreground">
@@ -26,8 +39,22 @@ export const EventShowedElement = ({ event, children }: IEventShowedElementProps
   const isGet = event.type === "GET";
   const formattedDate = formatDate(event.dateEvent || new Date());
 
+  const handleBack = () => {
+    back();
+  };
+
   return (
     <div className="space-y-8">
+      <Button
+        variant="ghost"
+        size="sm"
+        className="w-fit -ml-2 text-muted-foreground hover:text-foreground hover:bg-muted/50"
+        onClick={handleBack}
+      >
+        <ArrowLeft className="size-4 mr-1.5" />
+        Назад
+      </Button>
+
       <div className="flex justify-between items-start">
         <div className="space-y-4">
           <div className="flex flex-wrap items-center gap-3">
@@ -51,7 +78,7 @@ export const EventShowedElement = ({ event, children }: IEventShowedElementProps
           </h1>
         </div>
 
-        { children }
+        {children}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">

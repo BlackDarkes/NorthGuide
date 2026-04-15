@@ -8,7 +8,7 @@ export default function MainLayout({
   return (
     <>
       {children}
-      <Toaster />
+      <Toaster closeButton />
     </>
   );
 }

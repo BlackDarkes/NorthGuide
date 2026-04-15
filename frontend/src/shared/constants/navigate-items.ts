@@ -22,7 +22,7 @@ export const NAVIGATE_ITEMS: INavigateItems[] = [
   {
     id: "3",
     title: "Избранное",
-    path: "/",
+    path: "/favorites",
     isButton: false,
   },
   {
