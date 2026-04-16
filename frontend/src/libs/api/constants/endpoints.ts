@@ -7,6 +7,7 @@ export const ENDPOINTS = {
   },
   user: {
     me: "/user/me",
+    profileUpdate: "/user",
   },
   events: {
     getAll: "/events",

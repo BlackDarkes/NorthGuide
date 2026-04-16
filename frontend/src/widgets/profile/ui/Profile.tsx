@@ -11,7 +11,10 @@ import {
   Hash,
   Building2,
   User,
+  Pen,
 } from "lucide-react";
+import { ProfileSkeleton } from "./ProfileSkeleton";
+import { useProfileUpdateStore } from "@/features/profile-update/model/profile-update-store";
 
 const getDomainFromUrl = (url: string) => {
   try {
@@ -23,23 +26,39 @@ const getDomainFromUrl = (url: string) => {
 
 export const Profile = () => {
   const { user } = useUserStore();
+  const { handleOpen } = useProfileUpdateStore();
 
-  if (!user) return null; //  Skeleton/Loader
+  if (!user) return <ProfileSkeleton />; //  Skeleton/Loader
 
   return (
     <section className="py-8 md:py-12">
       <Container>
         <div className="max-w-3xl mx-auto space-y-6">
-          <div className="flex items-center gap-4">
-            <div className="size-14 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
-              <User className="size-6" />
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="size-14 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <User className="size-6" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold tracking-tight">
+                  Мой профиль
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                  Личные данные и настройки аккаунта
+                </p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight">Мой профиль</h2>
-              <p className="text-sm text-muted-foreground">
-                Личные данные и настройки аккаунта
-              </p>
-            </div>
+
+            <button
+              type="button"
+              onClick={handleOpen}
+              className={cn(
+                "p-2 rounded-full transition-all duration-300",
+                "hover:bg-foreground hover:text-background",
+              )}
+            >
+              <Pen className="size-4" />
+            </button>
           </div>
 
           <div className="bg-card border border-border/50 rounded-xl p-6 shadow-sm space-y-6">

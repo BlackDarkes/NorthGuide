@@ -1,9 +1,17 @@
-import { BadRequestException, Controller, Get, HttpCode } from "@nestjs/common";
+import {
+	BadRequestException,
+	Body,
+	Controller,
+	Get,
+	HttpCode,
+	Patch,
+} from "@nestjs/common";
 import { UserService } from "./user.service";
 import { UserRepository } from "./user.repository";
 import { CurrentUser } from "../../common/decorators/current-user.decorator";
 import { hiddenPassword } from "@/utils/hidden-password.utils";
 import { Auth } from "../auth/common/decorators/auth.decorator";
+import { Prisma } from "@/generated/prisma/client";
 
 @Controller("user")
 export class UserController {
@@ -12,7 +20,7 @@ export class UserController {
 		private readonly userRepository: UserRepository,
 	) {}
 
-  @Auth()
+	@Auth()
 	@Get("me")
 	@HttpCode(200)
 	async getMe(@CurrentUser("id") userId: string) {
@@ -27,5 +35,15 @@ export class UserController {
 		return {
 			...user,
 		};
+	}
+
+	@Auth()
+	@Patch()
+	@HttpCode(200)
+	async update(
+		@CurrentUser("id") userId: string,
+		@Body() data: Prisma.UsersUpdateInput,
+	) {
+		return this.userService.update(userId, data);
 	}
 }

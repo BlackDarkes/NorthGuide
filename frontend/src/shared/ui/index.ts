@@ -7,3 +7,5 @@ export { Badge, badgeVariants } from "./badge";
 export { TextUnderline } from "./text-underline";
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./accordion";
 export { Skeleton } from "./skeleton";
+export { Dialog, DialogContent, DialogHeader, DialogTitle } from "./dialog";
+export { Separator } from "./separator";

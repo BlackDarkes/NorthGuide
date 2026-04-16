@@ -1,5 +1,6 @@
 "use client";
 
+import { TypeProfileUpdateSchema } from "@/entities/user";
 import { ENDPOINTS } from "../constants/endpoints";
 import { baseClient } from "./base-client";
 
@@ -17,6 +18,8 @@ export const apiClient = {
   },
   user: {
     me: () => baseClient.get(ENDPOINTS.user.me),
+    profileUpdate: (data: TypeProfileUpdateSchema) =>
+      baseClient.patch(ENDPOINTS.user.profileUpdate, data),
   },
   events: {
     getEvents: () => baseClient.get(ENDPOINTS.events.getAll),
